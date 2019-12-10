@@ -9,7 +9,6 @@
 		
 #Add Above		
 		tmpLoadStepList = tuple(zip(*self.loadStepList))[0]
-		for progress in range(tmpLoadStepList[0], tmpLoadStepList[-1] + 1):
-			if progress not in tmpLoadStepList:
-				self.loadStepList.append((progress, lambda: None))
+		for progress in set(range(tmpLoadStepList[0], tmpLoadStepList[-1] + 1)).difference(tmpLoadStepList):
+			self.loadStepList.append((progress, lambda: None))
 		self.loadStepList.sort()
